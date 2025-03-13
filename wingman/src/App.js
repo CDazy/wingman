@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './hooks/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
-import Navbar from './components/Navbar';
 
 // Public Pages
 import Login from './pages/Login';
@@ -10,6 +9,7 @@ import Register from './pages/Register';
 import About from './pages/About';
 
 // Protected Pages
+import Setup from './pages/Setup';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Wingman from './pages/Wingman';
@@ -22,8 +22,6 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="App">
-          <Navbar />
           <div className="content">
             <Routes>
               {/* Public Routes */}
@@ -32,6 +30,14 @@ function App() {
               <Route path="/about" element={<About />} />
 
               {/* Protected Routes */}
+              <Route
+                path="/setup"
+                element={
+                  <PrivateRoute>
+                    <Setup />
+                  </PrivateRoute>
+                }
+              />
               <Route
                 path="/home"
                 element={
@@ -88,7 +94,6 @@ function App() {
               />
             </Routes>
           </div>
-        </div>
       </Router>
     </AuthProvider>
   );

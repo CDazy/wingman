@@ -21,7 +21,7 @@ function Register() {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate('/'); // Redirect to home page after successful registration
+      navigate('/setup'); // Redirect to setup page after successful registration
     } catch (error) {
       setError(error.message);
     }
